@@ -15,7 +15,7 @@ _NEWS_API_CLIENT = NewsApiClient(environ.get('NEWS_API_KEY'))
 
 
 class Source:
-    id: str
+    id:   str
     name: str
 
     def __init__(self, source: dict[str, Any]):
