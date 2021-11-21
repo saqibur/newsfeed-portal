@@ -2,7 +2,8 @@ from typing import Any
 
 from .base import *
 
-SECRET_KEY: str = get_secret_key("KEY_NAME_HERE")
+SECRET_KEY:  str = get_key('KEY_NAME_HERE')
+NEWSAPI_KEY: str = get_key('KEY_NAME_HERE')
 
 DEBUG: bool = True
 

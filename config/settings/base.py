@@ -4,15 +4,15 @@ import os
 
 BASE_DIR: Path = Path(__file__).resolve().parent.parent
 
-def get_secret_key(key_name: str) -> str:
+def get_key(key_name: str) -> str:
     match os.environ.get(key_name, None):
         case str(SECRET_KEY):
             return SECRET_KEY
         case None:
             raise Exception(
-                """
-                You haven't configured a secret key for your environment yet.
-                For help, please check `Django Secret` in the project README.
+                f"""
+                You haven't configured a '{key_name}' for your environment yet.
+                For help, please check `Environment Secrets` in the project README.
                 """
             )
 
