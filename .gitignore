@@ -1,0 +1,7 @@
+# Project-specific ignores
+config/settings/local.py
+
+
+# Auto-generated file ignores
+__pycache__
+venv-*
