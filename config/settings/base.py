@@ -16,7 +16,9 @@ def get_key(key_name: str) -> str:
                 """
             )
 
-LOCAL_APPS: list[str] = []
+LOCAL_APPS: list[str] = [
+    'users',
+]
 
 THIRD_PARTY_APPS: list[str] = [
     'rest_framework',
@@ -48,7 +50,7 @@ ROOT_URLCONF: str = 'config.urls'
 TEMPLATES: list[str] = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ BASE_DIR / '../templates' ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,6 +79,8 @@ AUTH_PASSWORD_VALIDATORS: list[dict[str, str]] = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+LOGIN_REDIRECT_URL = 'users:home'
 
 LANGUAGE_CODE: str  = 'en-us'
 TIME_ZONE:     str  = 'UTC'
