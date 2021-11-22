@@ -6,7 +6,11 @@ from django.db.models import (
 
 
 class Country(Model):
-    country: CharField = CharField(max_length=100, primary_key=True)
+    country: CharField = CharField(max_length=2, primary_key=True)
+
+
+    def __str__(self):
+        return self.country
 
 
 

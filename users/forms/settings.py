@@ -3,14 +3,15 @@ from django.forms import (
     CheckboxSelectMultiple,
     Form,
     MultipleChoiceField,
+    ModelMultipleChoiceField,
 )
-from libraries.newsapi_service.countries import Country
 
+from news.models.country import Country
 
 
 class SettingsForm(Form):
-    countries: MultipleChoiceField = MultipleChoiceField(
-        choices  = Country.choices(),
+    countries: ModelMultipleChoiceField = ModelMultipleChoiceField(
+        queryset = Country.objects.all(),
         widget   = CheckboxSelectMultiple(),
         required = False,
     )
