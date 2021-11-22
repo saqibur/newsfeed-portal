@@ -1,1 +1,18 @@
-Welcome, {{ user }}
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+
+<div class="container text-center">
+  <p class="display-3 mb-5">
+    Welcome to your Newsfeed Portal,
+    <span class="fst-italic"> {{ user.username }}</span>
+  </p>
+  <a class="btn btn-secondary" href="{% url 'user:newsfeed' %}">Newsfeed</a>
+  <a class="btn btn-success" href="{% url 'user:settings' %}">Settings</a>
+  <br><br><br>
+  <a class="btn btn-danger" href="{% url 'user:logout' %}">Logout</a>
+</div>
+
+{% endblock content %}
