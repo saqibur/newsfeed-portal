@@ -17,6 +17,7 @@ def get_key(key_name: str) -> str:
             )
 
 LOCAL_APPS: list[str] = [
+    'news',
     'users',
 ]
 
@@ -80,7 +81,7 @@ AUTH_PASSWORD_VALIDATORS: list[dict[str, str]] = [
     },
 ]
 
-LOGIN_REDIRECT_URL = 'users:home'
+LOGIN_REDIRECT_URL = 'user:home'
 
 LANGUAGE_CODE: str  = 'en-us'
 TIME_ZONE:     str  = 'UTC'

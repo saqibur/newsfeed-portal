@@ -11,16 +11,11 @@ from django.urls import reverse_lazy
 
 
 class HomeView(TemplateView):
-    template_name = "users/home.html"
+    template_name: str = "users/home.html"
 
 
-    def get(
-        self,
-        request:  HttpRequest,
-        *args:    Any,
-        **kwargs: Any
-    ) -> HttpResponse:
+    def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         if request.user.is_anonymous:
-            return HttpResponseRedirect(reverse_lazy('users:login'))
+            return HttpResponseRedirect(reverse_lazy('user:login'))
         else:
             return super().get(request, *args, **kwargs)

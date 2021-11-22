@@ -1,5 +1,7 @@
 from enum import Enum
 
+
+
 class Category(str, Enum):
     BUSINESS      = 'business'
     ENTERTAINMENT = 'entertainment'
@@ -8,3 +10,8 @@ class Category(str, Enum):
     SCIENCE       = 'science'
     SPORTS        = 'sports'
     TECHONOLOGY   = 'technology'
+
+
+    @classmethod
+    def choices(cls) -> list[(str, str)] :
+        return [ (category.name, category.value) for category in cls ]

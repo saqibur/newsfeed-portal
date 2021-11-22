@@ -4,7 +4,7 @@
 <p>Please fill-up the form according to the instructions.</p>
 {% endif %}
 
-<form method="post" action="{% url 'users:login' %}">
+<form method="post" action="{% url 'user:login' %}">
   {% csrf_token %}
 
   <table>

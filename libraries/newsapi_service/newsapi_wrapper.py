@@ -4,14 +4,15 @@ from typing import Any
 
 from newsapi import NewsApiClient
 
-from categories import Category
-from countries import Country
+from .categories import Category
+from .countries import Country
 
 
 # TODO: Verify if this creates new clients with each request or not. If so, I'll
 #       need to implement some sort of session management.
 # HACK: Need to properly send in the key from project configs.
 _NEWS_API_CLIENT = NewsApiClient(environ.get('NEWS_API_KEY'))
+
 
 
 class Source:
@@ -81,3 +82,9 @@ def get_top_headlines(
         total_results = news_api_results['totalResults'],
         articles      = news_api_results['articles']
     )
+
+
+def get_all_sources() -> list[Source]:
+    source_api_results = _NEWS_API_CLIENT.get_sources()
+
+    return [ Source(source) for source in source_api_results['sources'] ]
