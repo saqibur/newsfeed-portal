@@ -1,10 +1,11 @@
 from datetime import datetime
 from os import environ
-from typing import Any
+from typing import (
+    Any,
+    Optional,
+)
 
 from newsapi import NewsApiClient
-
-from .countries import Country
 
 # TODO: Verify if this creates new clients with each request or not. If so, I'll
 #       need to implement some sort of session management.
@@ -14,12 +15,14 @@ _NEWS_API_CLIENT = NewsApiClient(environ.get('NEWS_API_KEY'))
 
 
 class Source:
-    id:   str
-    name: str
+    id:      str
+    name:    str
+    country: Optional[str]
 
     def __init__(self, source: dict[str, Any]):
-        self.id   = source['id']
-        self.name = source['name']
+        self.id      = source['id']
+        self.name    = source['name']
+        self.country = source.get('country', None)
 
 
 
@@ -55,10 +58,8 @@ class NewsAPIResults:
         self.articles      = [ Article(article) for article in articles ]
 
 
-def get_top_headlines_from_sources(sources: list[Source]) -> NewsAPIResults:
-    news_api_results = _NEWS_API_CLIENT.get_top_headlines(
-        sources=','.join([ source.id for source in sources ])
-    )
+def get_top_headlines(country: str = None) -> NewsAPIResults:
+    news_api_results = _NEWS_API_CLIENT.get_top_headlines(country = country)
 
     return NewsAPIResults(
         total_results = news_api_results['totalResults'],
@@ -66,8 +67,10 @@ def get_top_headlines_from_sources(sources: list[Source]) -> NewsAPIResults:
     )
 
 
-def get_top_headlines(country: Country = None) -> NewsAPIResults:
-    news_api_results = _NEWS_API_CLIENT.get_top_headlines(country = country)
+def get_top_headlines_from_sources(sources: list[Source]) -> NewsAPIResults:
+    news_api_results = _NEWS_API_CLIENT.get_top_headlines(
+        sources = ','.join([ source.id for source in sources ])
+    )
 
     return NewsAPIResults(
         total_results = news_api_results['totalResults'],

@@ -1,5 +1,4 @@
 from libraries.newsapi_service.newsapi_wrapper import (
-    Article,
     NewsAPIResults,
     get_top_headlines,
     get_all_sources,
@@ -7,6 +6,7 @@ from libraries.newsapi_service.newsapi_wrapper import (
 
 from news.models.article import Article as NewsArticle
 from news.models.source import Source
+from news.models.country import Country
 from users.models.subscription import Subscription
 
 def _notify_subscribers(article: NewsArticle):
@@ -23,14 +23,13 @@ def _notify_subscribers(article: NewsArticle):
 
 def fetch_top_headlines_job():
     top_headlines: NewsAPIResults = get_top_headlines()
-    articles: list[Article] = top_headlines.articles
 
-    for article in articles:
+    for article in top_headlines.articles:
         source, _ = Source.objects.get_or_create(
-                source = article.source.name
+                source = article.source.name,
         )
 
-        article, added = NewsArticle.objects.get_or_create(
+        news_article, added = NewsArticle.objects.get_or_create(
             title        = article.title,
             author       = article.author,
             description  = article.description,
@@ -42,11 +41,14 @@ def fetch_top_headlines_job():
         )
 
         if added:
-            _notify_subscribers(article)
+            _notify_subscribers(news_article)
 
 
 def update_sources_job():
-    sources = get_all_sources()
-    for source in sources:
-        source = Source(source=source.name)
-        source.save()
+    for source in get_all_sources():
+        country, _ = Country.objects.get_or_create(country = source.country)
+
+        _, _ = Source.objects.update_or_create(
+            source   = source.name,
+            defaults = { 'country': country },
+        )
