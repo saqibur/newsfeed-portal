@@ -16,7 +16,7 @@ class Source(Model):
     def update_sources(cls):
         sources = get_all_sources()
         for source in sources:
-            source = cls(source=source.id)
+            source = cls(source=source.name)
             source.save()
 
 
