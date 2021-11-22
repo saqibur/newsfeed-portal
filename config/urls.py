@@ -5,5 +5,5 @@ from django.urls import path
 
 urlpatterns = [
     path('archon/', admin.site.urls),
-    url('user/', include('users.urls', namespace='users')),
+    url('user/', include('users.urls', namespace='user')),
 ]

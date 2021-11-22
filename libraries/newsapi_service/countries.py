@@ -1,9 +1,10 @@
 from enum import Enum
 
 
+
 class Country(str, Enum):
-    # AE = 'ae'
-    # AR = 'ar'
+    AE = 'ae'
+    AR = 'ar'
     # AT = 'at'
     # AU = 'au'
     # BE = 'be'
@@ -56,7 +57,12 @@ class Country(str, Enum):
     # TR = 'tr'
     # TW = 'tw'
     # UA = 'ua'
-    UNITED_STATES = 'us'
+    US = 'us'
     # VE = 've'
     # ZA = 'za'
     # ZH = 'zh'
+
+
+    @classmethod
+    def choices(cls) -> list[(str, str)]:
+        return [ (country.name, country.value) for country in cls ]

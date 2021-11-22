@@ -1,0 +1,17 @@
+{% block content %}
+  <h2 class="display-1">Settings</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.keywords.label_tag }}<br>
+    {{ form.keywords }}
+    {{ form.keyword.label_tag }}<br>
+    {{ form.keyword }}
+    <br>
+    <br>
+    <button type="submit">Update Keywords</button>
+
+    {{ form.countries }}
+    {{ form.sources }}
+    <button type="submit">Save Settings</button>
+  </form>
+{% endblock %}
