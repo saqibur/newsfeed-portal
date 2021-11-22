@@ -5,6 +5,9 @@
 {% block content %}
   <div class="container">
     <h2 class="display-4">Settings</h2>
+    <a href="{% url 'user:home' %}"class="">Home</a>
+    -
+    <a href="{% url 'user:newsfeed' %}"class="">Newsfeed</a>
     <form method="post">
       {% csrf_token %}
       <div class="border p-4 mt-3 mb-3">
