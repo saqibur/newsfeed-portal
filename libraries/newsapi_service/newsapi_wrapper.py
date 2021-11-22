@@ -4,9 +4,7 @@ from typing import Any
 
 from newsapi import NewsApiClient
 
-from .categories import Category
 from .countries import Country
-
 
 # TODO: Verify if this creates new clients with each request or not. If so, I'll
 #       need to implement some sort of session management.
@@ -57,7 +55,6 @@ class NewsAPIResults:
         self.articles      = [ Article(article) for article in articles ]
 
 
-
 def get_top_headlines_from_sources(sources: list[Source]) -> NewsAPIResults:
     news_api_results = _NEWS_API_CLIENT.get_top_headlines(
         sources=','.join([ source.id for source in sources ])
@@ -69,14 +66,8 @@ def get_top_headlines_from_sources(sources: list[Source]) -> NewsAPIResults:
     )
 
 
-def get_top_headlines(
-    category: Category = None,
-    country:  Country  = None,
-) -> NewsAPIResults:
-    news_api_results = _NEWS_API_CLIENT.get_top_headlines(
-        category = category,
-        country  = country,
-    )
+def get_top_headlines(country: Country = None) -> NewsAPIResults:
+    news_api_results = _NEWS_API_CLIENT.get_top_headlines(country = country)
 
     return NewsAPIResults(
         total_results = news_api_results['totalResults'],
