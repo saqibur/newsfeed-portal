@@ -1,4 +1,5 @@
 from typing import Any
+from django.db.models.query import QuerySet
 
 from django.http import (
     HttpRequest,
@@ -17,18 +18,20 @@ from users.models.subscription import Subscription
 
 class NewsfeedView(ListView):
     model         = Article
-    paginate_by   = 10
+    paginate_by   = 5
     template_name = 'users/newsfeed.html'
 
     def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         return super().get(request, *args, **kwargs)
 
-    def get_queryset(self):
-        sources: list[Source] = (
-            Subscription.objects.get(user=self.request.user).sources.all()
-        )
-
-        return Article.objects.filter(source__in=sources).all()
+    def get_queryset(self) -> QuerySet[Article]:
+        try:
+            sources: list[Source] = (
+                Subscription.objects.get(user=self.request.user).sources.all()
+            )
+            return Article.objects.filter(source__in=sources).all()
+        except Subscription.DoesNotExist:
+            return Article.objects.none()
 
 
 

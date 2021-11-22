@@ -1,17 +1,54 @@
-{% block content %}
-  <h2 class="display-1">Settings</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.keywords.label_tag }}<br>
-    {{ form.keywords }}
-    {{ form.keyword.label_tag }}<br>
-    {{ form.keyword }}
-    <br>
-    <br>
-    <button type="submit">Update Keywords</button>
+{% extends 'base.html' %}
 
-    {{ form.countries }}
-    {{ form.sources }}
-    <button type="submit">Save Settings</button>
-  </form>
+{% block title %} Settings {% endblock title %}
+
+{% block content %}
+  <div class="container">
+    <h2 class="display-4">Settings</h2>
+    <a href="{% url 'user:home' %}"class="">Home</a>
+    -
+    <a href="{% url 'user:newsfeed' %}"class="">Newsfeed</a>
+    <form method="post">
+      {% csrf_token %}
+      <div class="border p-4 mt-3 mb-3">
+        <h6 class="mb-3">Keywords - Add/remove keywords you want to be notified about</h6>
+        Your Keywords:
+        {% for keyword in form.keywords %}
+          <p class="badge rounded-pill bg-primary p-2 m-1">{{ keyword }}</p>
+        {% empty %}
+          <small>You have no keywords right now, please add one below.</small>
+        {% endfor %}
+        <br>
+
+        <div class="mt-3 mb-3">
+          Add new keyword: {{ form.keyword }}
+        </div>
+        <button class="btn btn-secondary" type="submit">Update</button>
+      </div>
+
+      <div class="border p-4 mt-3 mb-3">
+        <h6 class="mb-3">Countries - Add/remove countries you want news from in your newsfeed</h6>
+        <div>
+          {% for country in form.countries %}
+            <text class="me-3">{{ country }}</text>
+          {% empty %}
+            <small>No countries found.</small>
+          {% endfor %}
+        </div>
+        <button class="btn btn-secondary mt-3" type="submit">Update</button>
+      </div>
+
+      <div class="border p-4 mt-3 mb-3">
+        <h6 class="mb-3">Sources - Add/remove news sources you want news from in your newsfeed</h6>
+        <div>
+          {% for source in form.sources %}
+            <text class="me-3">{{ source }}</text><br>
+          {% empty %}
+            <small>No news sources found.</small>
+          {% endfor %}
+        </div>
+        <button class="btn btn-secondary mt-3" type="submit">Update</button>
+      </div>
+    </form>
+  </div>
 {% endblock %}

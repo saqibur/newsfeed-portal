@@ -1,19 +1,44 @@
+{% extends 'base.html' %}
+
+{% block custom_styles %}
+  <style>
+    ul {
+      list-style-type: none;
+    }
+  </style>
+{% endblock custom_styles %}
+
+{% block title %} Sign Up {% endblock title %}
+
 {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
+  <div class="text-center">
+    <p class="display-4">Sign up</p>
+    <form method="post">
+      {% csrf_token %}
+         {{ form.username.label_tag }} {{ form.username }} <br>
+        <small class="text-secondary">{{ form.username.help_text }}</small>
+        {% for error in form.username.errors %}
+          <p class="text-danger">{{ error }}</p>
         {% endfor %}
-      </p>
-    {% endfor %}
-    <button type="submit">Sign up</button>
-  </form>
+        <br><br><br>
+
+        {{ form.password1.label_tag }}
+        {{ form.password1 }}
+        <small class="text-secondary">
+          {{ form.password1.help_text }}
+        </small>
+        {% for error in form.password1.errors %}
+          <p class="text-danger">{{ error }}</p>
+        {% endfor %}
+
+        {{ form.password2.label_tag }} {{ form.password2 }} <br>
+        <small class="text-secondary">{{ form.password2.help_text }}</small>
+        {% for error in form.password2.errors %}
+          <p class="text-danger">{{ error }}</p>
+        {% endfor %}
+        <br>
+
+      <button class="mt-2 btn btn-success" type="submit">Sign up</button>
+    </form>
+  </div>
 {% endblock %}
