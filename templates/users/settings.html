@@ -8,6 +8,8 @@
     <a href="{% url 'user:home' %}"class="">Home</a>
     -
     <a href="{% url 'user:newsfeed' %}"class="">Newsfeed</a>
+    -
+    <a class="btn btn-danger" href="{% url 'user:logout' %}">Logout</a>
     <form method="post">
       {% csrf_token %}
       <div class="border p-4 mt-3 mb-3">
