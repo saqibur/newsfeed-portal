@@ -12,3 +12,4 @@ class Country(Model):
 
     class Meta:
         app_label: str = 'news'
+        verbose_name_plural: str = "countries"
