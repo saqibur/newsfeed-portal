@@ -23,6 +23,7 @@ LOCAL_APPS: list[str] = [
 
 THIRD_PARTY_APPS: list[str] = [
     'rest_framework',
+    'django_apscheduler',
 ]
 
 DJANGO_APPS: list[str] = [
@@ -92,3 +93,7 @@ USE_TZ:        bool = True
 STATIC_URL: str = '/static/'
 
 DEFAULT_AUTO_FIELD: str = 'django.db.models.BigAutoField'
+
+# django-aps configs #
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25 # Seconds
