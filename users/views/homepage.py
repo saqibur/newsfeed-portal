@@ -6,7 +6,29 @@ from django.http import (
 )
 from django.http.response import HttpResponseRedirect
 from django.views.generic.base import TemplateView
+from django.views.generic.list import ListView
 from django.urls import reverse_lazy
+
+from news.models.article import Article
+from news.models.source import Source
+from users.models.subscription import Subscription
+
+
+
+class NewsfeedView(ListView):
+    model         = Article
+    paginate_by   = 10
+    template_name = 'users/newsfeed.html'
+
+    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        return super().get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        sources: list[Source] = (
+            Subscription.objects.get(user=self.request.user).sources.all()
+        )
+
+        return Article.objects.filter(source__in=sources).all()
 
 
 
