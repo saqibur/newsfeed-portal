@@ -11,4 +11,4 @@ class Country(Model):
 
 
     class Meta:
-        app_label = 'news'
+        app_label: str = 'news'

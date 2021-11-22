@@ -22,4 +22,4 @@ class Source(Model):
 
 
     class Meta:
-        app_label = 'news'
+        app_label: str = 'news'
