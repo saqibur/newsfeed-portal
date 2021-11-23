@@ -9,6 +9,8 @@
     -
     <a href="{% url 'user:newsfeed' %}"class="">Newsfeed</a>
     -
+    <a class="btn btn-warning" href="{% url 'user:password_reset' %}">Password Reset</a>
+    -
     <a class="btn btn-danger" href="{% url 'user:logout' %}">Logout</a>
     <form method="post">
       {% csrf_token %}
