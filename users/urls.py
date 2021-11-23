@@ -1,4 +1,3 @@
-from django.contrib import auth
 from django.urls import path
 
 from users.views.authentication import (

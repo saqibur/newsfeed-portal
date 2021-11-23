@@ -18,12 +18,14 @@ from users.models.subscription import Subscription
 
 
 class NewsfeedView(ListView):
-    model         = Article
-    paginate_by   = 5
-    template_name = 'users/newsfeed.html'
+    model:         Article  = Article
+    paginate_by:   int      = 5
+    template_name: str      = 'users/newsfeed.html'
+
 
     def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         return super().get(request, *args, **kwargs)
+
 
     def get_queryset(self) -> QuerySet[Article]:
         try:

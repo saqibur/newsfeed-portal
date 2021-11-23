@@ -17,7 +17,7 @@ from users.models.subscription import Subscription
 
 
 class SettingsView(LoginRequiredMixin, FormView):
-    template_name: str          = "users/settings.html"
+    template_name: str          = 'users/settings.html'
     login_url:     str          = 'user:login'
     form_class:    Form         = SettingsForm
     success_url:   HttpResponse = reverse_lazy('user:settings')

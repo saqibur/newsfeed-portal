@@ -9,6 +9,7 @@ from django.forms import (
 from news.models.country import Country
 
 
+
 class SettingsForm(Form):
     countries: ModelMultipleChoiceField = ModelMultipleChoiceField(
         queryset = Country.objects.all(),
