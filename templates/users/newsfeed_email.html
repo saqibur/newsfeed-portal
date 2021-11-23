@@ -1,0 +1,19 @@
+{% autoescape off %}
+Hello,
+
+Here are the latest headlines which are related to your interests -
+<br>
+{% for article in articles %}
+    <div class="border mb-3">
+        <div class="card-body">
+            <h4 class="card-text">
+                {{ article.title }} <a href="{{ article.url }}">continue reading.</a>
+            </h4>
+        </div>
+    </div>
+{% endfor %}
+
+Sincerely,
+Newsfeed Portal
+
+{% endautoescape %}
