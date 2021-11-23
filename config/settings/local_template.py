@@ -2,17 +2,15 @@ from typing import Any
 
 from .base import *
 
-SECRET_KEY:  str = get_key('KEY_NAME_HERE')
-NEWSAPI_KEY: str = get_key('KEY_NAME_HERE')
-
-FROM_EMAIL: str = 'FROM@WHERE.COM'
+SECRET_KEY: str = get_key('KEY_NAME_HERE')
+FROM_EMAIL: str = get_key('KEY_NAME_HERE')
 
 DEBUG: bool = True
 
 DATABASES: dict[dict[str, Any]] = {
     'default': {
         'ENGINE':   'django.db.backends.postgresql',
-        'NAME':     '', # Change this to the name of your db, for example, `iglu-db`
+        'NAME':     '', # Change this to the name of your db.
         'USER':     '', # Username in your db
         'PASSWORD': '', # Corresponding password for the user
         'HOST':     'localhost',

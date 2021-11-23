@@ -1,8 +1,10 @@
 from os import environ
+
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
 _SEND_GRID_API_CLIENT: SendGridAPIClient = SendGridAPIClient(environ.get('SENDGRID'))
+
 
 def send_email(
     from_email:   str,
