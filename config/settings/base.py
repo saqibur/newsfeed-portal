@@ -83,6 +83,7 @@ AUTH_PASSWORD_VALIDATORS: list[dict[str, str]] = [
     },
 ]
 
+LOGIN_URL = 'user:login'
 LOGIN_REDIRECT_URL = 'user:home'
 
 LANGUAGE_CODE: str  = 'en-us'

@@ -1,6 +1,7 @@
 from typing import Any
 from django.db.models.query import QuerySet
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import (
     HttpRequest,
     HttpResponse,
@@ -17,7 +18,7 @@ from users.models.subscription import Subscription
 
 
 
-class NewsfeedView(ListView):
+class NewsfeedView(LoginRequiredMixin, ListView):
     model:         Article  = Article
     paginate_by:   int      = 5
     template_name: str      = 'users/newsfeed.html'
@@ -47,7 +48,7 @@ class NewsfeedView(ListView):
 
 
 
-class HomeView(TemplateView):
+class HomeView(LoginRequiredMixin, TemplateView):
     template_name: str = "users/home.html"
 
 
