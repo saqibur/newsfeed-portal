@@ -17,5 +17,5 @@ def send_email(
             subject      = subject,
             html_content = html_content,
         ))
-    except Exception as _exn:
-        print("Failed to send email")
+    except Exception as exn:
+        raise exn
