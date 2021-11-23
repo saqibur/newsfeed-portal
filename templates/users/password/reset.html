@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	<div class="container p-5">
+  	 	<h2 class="font-weight-bold mt-3">Reset Password</h2>
+		<hr>
+		<p>Provide your email to get a password reset link.</p>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">Send email</button>
+        </form>
+  	</div>
+{% endblock %}
