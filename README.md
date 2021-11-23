@@ -2,12 +2,12 @@
 
 ## Getting Started
 
-### Setting Up Your Environment
 
-#### Python Installation
+### Python Installation
 * The project runs on [Python 3.10](https://www.python.org/downloads/).
 
-#### Environment Variables
+
+### Environment Variables
 You'll have to set-up the following user variable(s) in your environment:
 * `SECRET_KEY` - A Django secret key. You can user any keygen to roll your own key.
 * `FROM_EMAIL` - This is the email address `SendGrid` will use to send emails.
@@ -16,7 +16,7 @@ You'll have to set-up the following user variable(s) in your environment:
 
 *Rename keys as necessary*
 
-##### On Windows
+#### On Windows
 ```bash
 setx "KEY_NAME" "KEY_VALUE"
 # If successful, it'll say: "SUCCESS: Specified value was saved."
@@ -31,19 +31,22 @@ From there, set the `KEY_NAME` in your `local.py`, `newsapi_wrapper.py` and
 
 Apart from cloning this project, you also need the following -
 
-- [Postgres](https://www.postgresql.org/download/)
+- [Postgres-14.0-1](https://www.postgresql.org/download/)
 
 **Make sure you get both the PostgreSQL server, and the Postgres Admin. The
 default installation comes with both.**
 
 
 ### Running the project
-
+1. Create and activate a virtual environment.
 1. Install all requirements using `pip install -r requirements.txt` in a virutal
 environment.
+1. Set up environment variables according to the instructions above.
 1. Go to `config/settings/local_template.py`.
 1. Create a copy of this file, named `local.py`.
 1. Configure the file using your local Postgres credentials.
+1. Configure `HEADLINES_CRON` in `config/settings/base.py` according to your needs,
+by default, it's every 5 minutes. Change accordingly.
 1. Run using: `python manage.py runserver --settings=config.settings.local`
-1. In a separate terminal start the job runner using:
-`python manage.py job_runner --settings=config.settings.local`
+1. In a separate terminal (with the same active virtual environment) start the
+job runner using: `python manage.py job_runner --settings=config.settings.local`
