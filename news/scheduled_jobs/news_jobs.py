@@ -14,7 +14,7 @@ def _notify_subscribers(article: NewsArticle):
 
     for subscription in subscriptions:
         keywords: list[str] = [
-            str(keyword.keyword).lower() for keyword in subscription.keywords.all()
+            keyword.keyword for keyword in subscription.keywords.all()
         ]
 
         if any(word.lower() in article.title for word in keywords):
