@@ -21,6 +21,12 @@
                         <p class="card-text h6 text-center">
                             {{ article.published_at }}
                         </p>
+
+                        <p class="card-text h6 text-center mb-2">
+                        {% if article.source.country %}
+                            Country: {{ article.source.country }}
+                        {% endif %}
+                        </p>
                     </div>
                     <div class="col">
                         <div class="card-body">
