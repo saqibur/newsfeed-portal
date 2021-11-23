@@ -23,6 +23,8 @@
       <p class="text-danger">Username or password incorrect</p>
     {% endif %}
     <input class="form-input btn btn-success" type="submit" value="Login">
+    <br><br>
+    <a href="{% url 'user:password_reset' %}">Forgot your password? </a>
   </form>
 </div>
 
