@@ -23,6 +23,11 @@ class Article(Model):
     source: ForeignKey = ForeignKey(to=Source, on_delete=CASCADE)
 
 
+    def __str__(self) -> str:
+        return self.title
+
+
 
     class Meta:
         app_label: str = 'news'
+        ordering: list[str] = ['-published_at']
