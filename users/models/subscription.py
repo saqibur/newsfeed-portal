@@ -22,3 +22,6 @@ class Subscription(Model):
     countries: ManyToManyField = ManyToManyField(Country, related_name="countries")
     sources:   ManyToManyField = ManyToManyField(Source, related_name="sources")
     keywords:  ManyToManyField = ManyToManyField(Keyword, related_name="keywords")
+
+    def __str__(self):
+        return str(self.user)

@@ -14,10 +14,11 @@ def _notify_subscribers(article: NewsArticle):
 
     for subscription in subscriptions:
         keywords: list[str] = [
-            keyword.keyword for keyword in subscription.keywords.all()
+            str(keyword.keyword).lower() for keyword in subscription.keywords.all()
         ]
 
-        if any(word in article.title for word in keywords):
+        if any(word.lower() in article.title for word in keywords):
+            # TODO: Should send a single email for all relevant articles found.
             print("Sending email to", subscription.user)
 
 

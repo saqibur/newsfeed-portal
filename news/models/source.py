@@ -8,6 +8,7 @@ from django.db.models import (
 from news.models.country import Country
 
 
+
 class Source(Model):
     source: CharField = CharField(max_length=100, primary_key=True)
 
@@ -19,6 +20,11 @@ class Source(Model):
     )
 
 
+    def __str__(self) -> str:
+        return self.source
+
+
 
     class Meta:
         app_label: str = 'news'
+        ordering:  str = ['source']
