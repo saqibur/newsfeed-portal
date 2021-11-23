@@ -2,8 +2,8 @@ from typing import Any
 
 from .base import *
 
-SECRET_KEY: str = get_key('KEY_NAME_HERE')
-FROM_EMAIL: str = get_key('KEY_NAME_HERE')
+SECRET_KEY: str = get_key('KEY_NAME')
+FROM_EMAIL: str = get_key('KEY_NAME')
 
 DEBUG: bool = True
 
