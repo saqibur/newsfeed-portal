@@ -1,10 +1,7 @@
 {% autoescape off %}
-Hello,
-
-Here's your password reset link:
+Hello, here's your password reset link:
 {{ protocol }}://{{ domain }}{% url 'user:password_reset_confirm' uidb64=uid token=token %}
 
 Sincerely,
 Newsfeed Portal
-
 {% endautoescape %}

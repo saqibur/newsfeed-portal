@@ -15,7 +15,7 @@
     <p class="display-4">Sign up</p>
     <form method="post">
       {% csrf_token %}
-         {{ form.username.label_tag }} {{ form.username }} <br>
+        {{ form.username.label_tag }} {{ form.username }} <br>
         <small class="text-secondary">{{ form.username.help_text }}</small>
         {% for error in form.username.errors %}
           <p class="text-danger">{{ error }}</p>
