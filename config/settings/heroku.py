@@ -6,7 +6,7 @@ from .base import *
 SECRET_KEY:  str = get_key('KEY_NAME_HERE')
 NEWSAPI_KEY: str = get_key('KEY_NAME_HERE')
 
-FROM_EMAIL: str = 'FROM@WHERE.COM'
+FROM_EMAIL: str = get_key('KEY_NAME_HERE')
 
 DEBUG: bool = False
 
