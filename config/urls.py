@@ -11,4 +11,5 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('archon/', admin.site.urls),
     url('user/', include('users.urls', namespace='user')),
+    path('api/', include('api_newsfeed.urls', namespace='api_newsfeed')),
 ]

@@ -8,7 +8,7 @@
   <p class="display-3 mb-5">Welcome to the Newsfeed Portal</p>
   <a class="btn btn-secondary" href="{% url 'user:register' %}">Register</a>
   <a class="btn btn-success" href="{% url 'user:login' %}">Login</a>
-  <a class="btn btn-dark" href="">API: TODO</a>
+  <a class="btn btn-dark" href="{% url 'api_newsfeed:newsfeed' %}">API</a>
 </div>
 
 {% endblock content %}
