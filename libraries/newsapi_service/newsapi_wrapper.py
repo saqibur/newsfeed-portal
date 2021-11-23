@@ -7,10 +7,7 @@ from typing import (
 
 from newsapi import NewsApiClient
 
-# TODO: Verify if this creates new clients with each request or not. If so, I'll
-#       need to implement some sort of session management.
-# HACK: Need to properly send in the key from project configs.
-_NEWS_API_CLIENT = NewsApiClient(environ.get('NEWS_API_KEY'))
+_NEWS_API_CLIENT: NewsApiClient = NewsApiClient(environ.get('NEWS_API_KEY'))
 
 
 
@@ -59,18 +56,7 @@ class NewsAPIResults:
 
 
 def get_top_headlines(country: str = None) -> NewsAPIResults:
-    news_api_results = _NEWS_API_CLIENT.get_top_headlines(country = country)
-
-    return NewsAPIResults(
-        total_results = news_api_results['totalResults'],
-        articles      = news_api_results['articles']
-    )
-
-
-def get_top_headlines_from_sources(sources: list[Source]) -> NewsAPIResults:
-    news_api_results = _NEWS_API_CLIENT.get_top_headlines(
-        sources = ','.join([ source.id for source in sources ])
-    )
+    news_api_results = _NEWS_API_CLIENT.get_top_headlines(country=country)
 
     return NewsAPIResults(
         total_results = news_api_results['totalResults'],
