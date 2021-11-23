@@ -1,8 +1,8 @@
 from pathlib import Path
 import os
 
-
 BASE_DIR: Path = Path(__file__).resolve().parent.parent
+
 
 def get_key(key_name: str) -> str:
     match os.environ.get(key_name, None):
@@ -15,6 +15,7 @@ def get_key(key_name: str) -> str:
                 For help, please check `Environment Secrets` in the project README.
                 """
             )
+
 
 LOCAL_APPS: list[str] = [
     'news',
