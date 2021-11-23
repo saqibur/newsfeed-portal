@@ -24,7 +24,7 @@ class Command(BaseCommand):
 
     scheduler.add_job(
       fetch_top_headlines_job,
-      trigger          = CronTrigger(minute="*/1"),
+      trigger          = CronTrigger(minute=settings.HEADLINES_CRON),
       id               = "fetch_top_headlines_job",
       max_instances    = 1,
       replace_existing = True,
@@ -32,7 +32,7 @@ class Command(BaseCommand):
 
     scheduler.add_job(
       update_sources_job,
-      trigger          = CronTrigger(minute="*/1"),
+      trigger          = CronTrigger(minute=settings.HEADLINES_CRON),
       id               = "update_sources_job",
       max_instances    = 1,
       replace_existing = True,
