@@ -7,26 +7,34 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Country',
+            name="Country",
             fields=[
-                ('country', models.CharField(max_length=100, primary_key=True, serialize=False)),
+                (
+                    "country",
+                    models.CharField(max_length=100, primary_key=True, serialize=False),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Keyword',
+            name="Keyword",
             fields=[
-                ('keyword', models.CharField(max_length=20, primary_key=True, serialize=False)),
+                (
+                    "keyword",
+                    models.CharField(max_length=20, primary_key=True, serialize=False),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Source',
+            name="Source",
             fields=[
-                ('source', models.CharField(max_length=100, primary_key=True, serialize=False)),
+                (
+                    "source",
+                    models.CharField(max_length=100, primary_key=True, serialize=False),
+                ),
             ],
         ),
     ]

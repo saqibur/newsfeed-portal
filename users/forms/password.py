@@ -5,7 +5,6 @@ from django.template import loader
 from libraries.sendgrid_service.sendgrid_service import send_email
 
 
-
 class CustomPasswordResetForm(PasswordResetForm):
     # HACK: We're using django's reset forms but a different mailing service,
     #       therefore, we're overriding `send_mail` but keeping everything else
@@ -19,11 +18,11 @@ class CustomPasswordResetForm(PasswordResetForm):
         context,
         from_email,
         to_email,
-        html_email_template_name = None
+        html_email_template_name=None,
     ):
         send_email(
-            from_email   = settings.FROM_EMAIL,
-            to_email     = to_email,
-            html_content = loader.render_to_string(email_template_name, context),
-            subject      = "Password Reset for Newsfeed-Portal",
+            from_email=settings.FROM_EMAIL,
+            to_email=to_email,
+            html_content=loader.render_to_string(email_template_name, context),
+            subject="Password Reset for Newsfeed-Portal",
         )

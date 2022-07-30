@@ -11,18 +11,41 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('news', '0001_initial'),
+        ("news", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Subscription',
+            name="Subscription",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('countries', models.ManyToManyField(related_name='countries', to='news.Country')),
-                ('keywords', models.ManyToManyField(related_name='keywords', to='news.Keyword')),
-                ('sources', models.ManyToManyField(related_name='sources', to='news.Source')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "countries",
+                    models.ManyToManyField(related_name="countries", to="news.Country"),
+                ),
+                (
+                    "keywords",
+                    models.ManyToManyField(related_name="keywords", to="news.Keyword"),
+                ),
+                (
+                    "sources",
+                    models.ManyToManyField(related_name="sources", to="news.Source"),
+                ),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

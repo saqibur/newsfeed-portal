@@ -18,96 +18,92 @@ def get_key(key_name: str) -> str:
 
 
 LOCAL_APPS: list[str] = [
-    'news',
-    'users',
+    "news",
+    "users",
 ]
 
 THIRD_PARTY_APPS: list[str] = [
-    'rest_framework',
-    'django_apscheduler',
+    "rest_framework",
+    "django_apscheduler",
 ]
 
 DJANGO_APPS: list[str] = [
-    'django.contrib.auth',
-    'django.contrib.admin',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "django.contrib.auth",
+    "django.contrib.admin",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
 ]
 
-INSTALLED_APPS: list[str] =  DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS: list[str] = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE: list[str] = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF: str = 'config.urls'
+ROOT_URLCONF: str = "config.urls"
 
 TEMPLATES: list[str] = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ BASE_DIR / '../templates' ],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "../templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION: str = 'config.wsgi.application'
+WSGI_APPLICATION: str = "config.wsgi.application"
 
 AUTH_PASSWORD_VALIDATORS: list[dict[str, str]] = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-    ),
-    'DEFAULT_PARSER_CLASSES': (
-        'rest_framework.parsers.JSONParser',
-    ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 5,
+    "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
+    "DEFAULT_PARSER_CLASSES": ("rest_framework.parsers.JSONParser",),
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 5,
 }
 
-LOGIN_URL = 'user:login'
-LOGIN_REDIRECT_URL = 'user:home'
+LOGIN_URL = "user:login"
+LOGIN_REDIRECT_URL = "user:home"
 
-LANGUAGE_CODE: str  = 'en-us'
-TIME_ZONE:     str  = 'UTC'
-USE_I18N:      bool = True
-USE_L10N:      bool = True
-USE_TZ:        bool = True
+LANGUAGE_CODE: str = "en-us"
+TIME_ZONE: str = "UTC"
+USE_I18N: bool = True
+USE_L10N: bool = True
+USE_TZ: bool = True
 
-STATIC_URL: str = '/static/'
+STATIC_URL: str = "/static/"
 
-DEFAULT_AUTO_FIELD: str = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD: str = "django.db.models.BigAutoField"
 
 # django-aps configs #
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
-APSCHEDULER_RUN_NOW_TIMEOUT = 25 # Seconds
-HEADLINES_CRON              = '*/5' # Every 5 minutes
+APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
+HEADLINES_CRON = "*/15"  # Every 5 minutes

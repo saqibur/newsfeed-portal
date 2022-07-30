@@ -7,25 +7,27 @@ import news.models.keyword
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('news', '0004_auto_20211122_2312'),
+        ("news", "0004_auto_20211122_2312"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='article',
-            options={'ordering': ['-published_at']},
+            name="article",
+            options={"ordering": ["-published_at"]},
         ),
         migrations.AlterModelOptions(
-            name='keyword',
-            options={'ordering': ['keyword']},
+            name="keyword",
+            options={"ordering": ["keyword"]},
         ),
         migrations.AlterModelOptions(
-            name='source',
-            options={'ordering': ['source']},
+            name="source",
+            options={"ordering": ["source"]},
         ),
         migrations.AlterField(
-            model_name='keyword',
-            name='keyword',
-            field=news.models.keyword.KeywordField(max_length=20, primary_key=True, serialize=False),
+            model_name="keyword",
+            name="keyword",
+            field=news.models.keyword.KeywordField(
+                max_length=20, primary_key=True, serialize=False
+            ),
         ),
     ]

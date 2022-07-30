@@ -12,6 +12,7 @@ from news.models.source import Source
 from news.models.country import Country
 from users.models.subscription import Subscription
 
+
 def _notify_subscribers(articles: list[NewsArticle]):
     subscriptions = Subscription.objects.all()
 
@@ -21,25 +22,23 @@ def _notify_subscribers(articles: list[NewsArticle]):
         ]
 
         def is_article_notable(article):
-            return any(
-                word.lower() in str(article.title).lower() for word in keywords
-            )
+            return any(word.lower() in str(article.title).lower() for word in keywords)
 
         notable_articles = [
-            article  for article in articles if is_article_notable(article)
+            article for article in articles if is_article_notable(article)
         ]
 
         html_content = loader.render_to_string(
             "users/newsfeed_email.html",
-            {'articles': notable_articles},
+            {"articles": notable_articles},
         )
 
         if not notable_articles == []:
             send_email(
-                from_email   = settings.FROM_EMAIL,
-                to_email     = subscription.user.email,
-                html_content = html_content,
-                subject      = "Newsfeed Notification from Newsfeed-Portal",
+                from_email=settings.FROM_EMAIL,
+                to_email=subscription.user.email,
+                html_content=html_content,
+                subject="Newsfeed Notification from Newsfeed-Portal",
             )
 
 
@@ -50,18 +49,18 @@ def fetch_top_headlines_job():
 
     for article in top_headlines.articles:
         source, _ = Source.objects.get_or_create(
-                source = article.source.name,
+            source=article.source.name,
         )
 
         news_article, added = NewsArticle.objects.get_or_create(
-            title        = article.title,
-            author       = article.author,
-            description  = article.description,
-            url          = article.url,
-            url_to_image = article.url_to_image,
-            published_at = article.published_at,
-            content      = article.content,
-            source       = source,
+            title=article.title,
+            author=article.author,
+            description=article.description,
+            url=article.url,
+            url_to_image=article.url_to_image,
+            published_at=article.published_at,
+            content=article.content,
+            source=source,
         )
 
         if added:
@@ -73,9 +72,9 @@ def fetch_top_headlines_job():
 
 def update_sources_job():
     for source in get_all_sources():
-        country, _ = Country.objects.get_or_create(country = source.country)
+        country, _ = Country.objects.get_or_create(country=source.country)
 
         _, _ = Source.objects.update_or_create(
-            source   = source.name,
-            defaults = { 'country': country },
+            source=source.name,
+            defaults={"country": country},
         )

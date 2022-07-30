@@ -9,25 +9,24 @@ from django.forms import (
 from news.models.country import Country
 
 
-
 class SettingsForm(Form):
     countries: ModelMultipleChoiceField = ModelMultipleChoiceField(
-        queryset = Country.objects.all(),
-        widget   = CheckboxSelectMultiple(),
-        required = False,
+        queryset=Country.objects.all(),
+        widget=CheckboxSelectMultiple(),
+        required=False,
     )
 
     keywords: MultipleChoiceField = MultipleChoiceField(
-        widget   = CheckboxSelectMultiple(),
-        required = False,
+        widget=CheckboxSelectMultiple(),
+        required=False,
     )
 
     sources: MultipleChoiceField = MultipleChoiceField(
-        widget   = CheckboxSelectMultiple(),
-        required = False,
+        widget=CheckboxSelectMultiple(),
+        required=False,
     )
 
     keyword: CharField = CharField(
-        max_length = 20,
-        required   = False,
+        max_length=20,
+        required=False,
     )
